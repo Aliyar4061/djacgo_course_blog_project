@@ -1,0 +1,209 @@
+{#{% extends '_base.html' %}#}
+{##}
+{#{% block content %}#}
+{##}
+{#<div class="container mt-4">#}
+{#    <div class="row">#}
+{##}
+{#        <div class="col-9">#}
+{##}
+{#            {% for post in posts %}#}
+{##}
+{#                <div class="card shadow my-3 p-3">#}
+{##}
+{#                    <h1>{{ post.title }}</h1>#}
+{##}
+{#                    <p class="small text-muted mt-2">#}
+{#                        By: {{ post.author }}#}
+{#                    </p>#}
+{##}
+{#                    <p class="mt-2">#}
+{#                        {{ post.content }}#}
+{#                    </p>#}
+{##}
+{#                    <div class="btn-group mt-3" role="group">#}
+{##}
+{#                        <a href="{% url 'post_detail' post.id %}"#}
+{#                           class="btn btn-success btn-sm">#}
+{#                            Read More#}
+{#                        </a>#}
+{##}
+{#                        <a href="{% url 'post_detail' post.id %}"#}
+{#                           class="btn btn-info btn-sm">#}
+{#                            Edit#}
+{#                        </a>#}
+{##}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{##}
+{#            {% endfor %}#}
+{##}
+{#        </div>#}
+{##}
+{#        <div class="col-3">#}
+{##}
+{#            <div class="card my-3">#}
+{##}
+{#                <div class="card-body">#}
+{##}
+{#                    <h4>About</h4>#}
+{##}
+{#                    <p class="mt-4">#}
+{#                        We love python and django.#}
+{#                        So we created a blog site#}
+{#                        to share our thoughts.#}
+{#                    </p>#}
+{##}
+{#                    <a href="#"#}
+{#                       class="btn btn-danger btn-sm">#}
+{#                        More...#}
+{#                    </a>#}
+{##}
+{#                </div>#}
+{##}
+{#            </div>#}
+{##}
+{#        </div>#}
+{##}
+{#    </div>#}
+{#</div>#}
+{##}
+{#{% endblock content %}#}
+
+{% extends '_base.html' %}
+
+{% block page_title %}
+    Post Detail
+{% endblock page_title %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="row">
+
+        <div class="col-9">
+
+            <!-- Post -->
+
+            <div class="card shadow my-3 p-5">
+
+                <h1>{{ post.title }}</h1>
+
+                <p class="small text-muted mt-2">
+                    By: {{ post.author }}
+                </p>
+
+                <p class="mt-2">
+                    {{ post.content }}
+                </p>
+          <div>
+                <a href="{% url 'post_update' post.id %}"
+                   class="btn btn-sm btn-warning">
+                    Edit
+                </a>
+
+                <a href="{% url 'post_delete' post.id %}"
+                   class="btn btn-sm btn-danger">
+                    Delete
+                </a>
+                  </div>
+            </div>
+
+            <!-- Comments -->
+
+            <div class="card shadow my-3 p-5">
+
+                <h3>Comments:</h3>
+
+                No comments yet! Be the first one.
+
+            </div>
+
+            <!-- Add Comment -->
+
+            <div class="card shadow my-3 p-5">
+
+                <h3>Add new comment:</h3>
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <div class="form-group py-2">
+
+                        <label class="py-1" for="author_name">
+                            Enter your name:
+                        </label>
+
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="author_name"
+                                name="author_name"
+                                placeholder="e.g. John Doe">
+
+                    </div>
+
+                    <div class="form-group py-2">
+
+                        <label class="py-1" for="text">
+                            Enter your comment:
+                        </label>
+
+                        <textarea
+                                class="form-control"
+                                id="text"
+                                name="text"
+                                rows="8"
+                                placeholder="Enter your comment here..."></textarea>
+
+                    </div>
+
+                    <button
+                            type="submit"
+                            class="btn btn-primary">
+                        Submit
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- Sidebar -->
+
+        <div class="col-3">
+
+            <div class="card my-4">
+
+                <h5 class="card-header">
+                    About
+                </h5>
+
+                <div class="card-body">
+
+                    <p class="card-text">
+                        We love python and django.
+                        So we created a blog site
+                        to share our thoughts.
+                    </p>
+
+                    <a href="#"
+                       class="btn btn-sm btn-danger">
+                        More...
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

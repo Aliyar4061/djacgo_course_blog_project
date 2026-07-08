@@ -1,0 +1,78 @@
+{% extends '_base.html' %}
+
+{% block content %}
+
+    <div class="container mt-4">
+
+        <div class="row">
+
+            <div class="col-9">
+
+                {% for post in posts %}
+
+                    <div class="card shadow my-3 p-3">
+
+                        <h1>{{ post.title }}</h1>
+
+                        <p class="small text-muted">
+                            By: {{ post.author }}
+                        </p>
+
+                        <p>
+                            {{ post.content }}
+                        </p>
+
+                        <div class="d-flex">
+
+                            <a href="{% url 'post_detail' post.id %}"
+                               class="btn btn-success btn-sm me-2">
+                                Read More
+                            </a>
+
+{#                            <a href="{% url 'post_update' post.id %}"#}
+{#                               class="btn btn-warning btn-sm me-2">#}
+{#                                Edit#}
+{#                            </a>#}
+{##}
+{#                            <a href="{% url 'post_delete' post.id %}"#}
+{#                               class="btn btn-danger btn-sm">#}
+{#                                Delete#}
+{#                            </a>#}
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="col-3">
+
+                <div class="card my-3">
+
+                    <div class="card-body">
+
+                        <h4>About</h4>
+
+                        <p class="mt-4">
+                            We love python and django.
+                            So we created a blog site
+                            to share our thoughts.
+                        </p>
+
+                        <a href="#" class="btn btn-danger btn-sm">
+                            More...
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock content %}
